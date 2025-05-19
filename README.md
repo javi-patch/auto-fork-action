@@ -4,11 +4,11 @@ SPDX-FileCopyrightText: 2025 INDUSTRIA DE DISEÑO TEXTIL S.A. (INDITEX S.A.)
 SPDX-License-Identifier: Apache-2.0
 -->
 
-<!-- Add relevant badges here -->
+<!-- markdownlint-disable first-line-heading -->
 
-<h1 align="center">
+<p align="center">
   <img height="250" alt="Action Logo" src="logo.png">
-</h1>
+</p>
 
 <p align="center">
   <a href="https://github.com/InditexTech/auto-fork-action/blob/main/LICENSE">
@@ -27,35 +27,38 @@ SPDX-License-Identifier: Apache-2.0
 
 # auto-fork-action
 
-Short description of what this project does and why it exists.
+A GitHub Action that automatically forks a repository into your organization, creates a `<repo>-maintainers` team, assigns specified users as maintainers and grants permissions.
 
-> One or two sentences that explain its purpose in a clear, accessible way.
-
-<!-- Add video/image/demo here -->
+> Simplify onboarding of forked repos and team setup for your organization.
 
 ## Features
 
-- 🔧 Key functionality or tools
-- 📦 What problem it solves
-- 🚀 Target audience or use case
+- 🔧 Automatically fork any public repo into your org
+- 👥 Bootstrap a maintainers team and assign roles
+- 🔒 Grant fine-grained permissions (`pull`│`push`│`maintain`)
+- 📦 Reusable action with configurable inputs
 
 ## Getting Started
 
-### Installation
-
-Explain how to install or run the project.
-
-```bash
-# Example for a CLI tool
-npm install -g @inditextech/your-tool
-```
-
 ### Usage
 
-Show basic usage or link to examples.
+```yml
+# in your workflow file
+uses: InditexTech/auto-fork-action@v1
+with:
+  repository: owner/repo               # or full URL like https://github.com/owner/repo
+  maintainers: alice,bob,charlie       # comma-separated list
+  token: ${{ secrets.ORG_PAT }}        # PAT with repo + admin:org
+  org: InditexTech                     # optional, defaults to the workflow repo owner
+  team-name: custom-maintainers        # optional, defaults to <repo>-maintainers
+  permission: maintain                 # optional: pull | triage | push | maintain | admin (default: maintain)
+  poll-interval: '5'                   # optional, seconds between fork-ready checks (default: 3)
+  poll-retries: '15'                   # optional, number of retries before timing out (default: 10)
+```
 
-```bash
-your-tool init
+### Example workflow
+
+```yml
 ```
 
 ## Contributing
@@ -68,11 +71,10 @@ Please read our [CONTRIBUTING.md](./CONTRIBUTING.md) and follow the [Code of Con
 
 See [ROADMAP.md](./ROADMAP.md) for planned features and development goals.
 
-<!-- or -->
-
 ## Acknowledgments
 
-<!-- Mention any projects used as inspiration, key dependencies... -->
+- Based on the [TypeScript Action template](https://github.com/actions/typescript-action/).
+- Thanks to the [GitHub Actions Toolkit](https://github.com/actions/toolkit) for providing libraries and examples.
 
 ## License
 
