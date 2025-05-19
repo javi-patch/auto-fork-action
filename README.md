@@ -27,13 +27,14 @@ SPDX-License-Identifier: Apache-2.0
 
 # auto-fork-action
 
-A GitHub Action that automatically forks a repository into your organization, creates a `<repo>-maintainers` team, assigns specified users as maintainers and grants permissions.
+A GitHub Action that automatically forks a repository into your organization, creates a `<repo>-maintainers` team,
+assigns specified users as maintainers and grants permissions.
 
 > Simplify onboarding of forked repos and team setup for your organization.
 
 ## Features
 
-- 🔧 Automatically fork any public repo into your org
+- 🔧 Automatically fork any public repository into your org
 - 👥 Bootstrap a maintainers team and assign roles
 - 🔒 Grant fine-grained permissions (`pull`│`push`│`maintain`)
 - 📦 Reusable action with configurable inputs
@@ -42,23 +43,25 @@ A GitHub Action that automatically forks a repository into your organization, cr
 
 ### Usage
 
+<!-- prettier-ignore -->
 ```yml
 # in your workflow file
 uses: InditexTech/auto-fork-action@v1
 with:
-  repository: owner/repo               # or full URL like https://github.com/owner/repo
-  maintainers: alice,bob,charlie       # comma-separated list
-  token: ${{ secrets.ORG_PAT }}        # PAT with repo + admin:org
-  org: InditexTech                     # optional, defaults to the workflow repo owner
-  team-name: custom-maintainers        # optional, defaults to <repo>-maintainers
-  permission: maintain                 # optional: pull | triage | push | maintain | admin (default: maintain)
-  poll-interval: '5'                   # optional, seconds between fork-ready checks (default: 3)
-  poll-retries: '15'                   # optional, number of retries before timing out (default: 10)
+  repository: owner/repo             # or full URL like https://github.com/owner/repo
+  maintainers: alice,bob,charlie     # comma-separated list
+  token: ${{ secrets.ORG_PAT }}      # PAT with repo + admin:org
+  org: InditexTech                   # optional, defaults to the workflow repo owner
+  team-name: custom-maintainers      # optional, defaults to <repo>-maintainers
+  permission: maintain               # optional: pull | triage | push | maintain | admin (default: maintain)
+  poll-interval: '5'                 # optional, seconds between fork-ready checks (default: 3)
+  poll-retries: '15'                 # optional, number of retries before timing out (default: 10)
 ```
 
 ### Example workflow
 
 ```yml
+
 ```
 
 ## Contributing
