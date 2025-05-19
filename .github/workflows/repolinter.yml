@@ -1,0 +1,29 @@
+# SPDX-FileCopyrightText: 2025 INDUSTRIA DE DISEÑO TEXTIL S.A. (INDITEX S.A.)
+#
+# SPDX-License-Identifier: Apache-2.0
+
+name: Repo Linter
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  packages: read
+  statuses: write
+
+jobs:
+  repolinter:
+    name: Repo Linter
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Repolinter
+        uses: newrelic/repolinter-action@v1.7.0

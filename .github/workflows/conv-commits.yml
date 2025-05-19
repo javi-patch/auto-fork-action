@@ -1,0 +1,28 @@
+# SPDX-FileCopyrightText: 2025 INDUSTRIA DE DISEÑO TEXTIL S.A. (INDITEX S.A.)
+#
+# SPDX-License-Identifier: Apache-2.0
+
+name: Conventional Commits
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  packages: read
+  statuses: write
+
+jobs:
+  conv-commits:
+    name: Conventional Commits
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - uses: webiny/action-conventional-commits@v1.3.0

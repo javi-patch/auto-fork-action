@@ -1,0 +1,54 @@
+# SPDX-FileCopyrightText: 2025 INDUSTRIA DE DISEÑO TEXTIL S.A. (INDITEX S.A.)
+#
+# SPDX-License-Identifier: Apache-2.0
+
+name: Auto Fork & Team
+description:
+  Forks a repository into your organization, creates a `<repo>-maintainers` team, assigns specified users, and grants
+  permissions.
+author: InditexTech
+
+branding:
+  icon: git-branch
+  color: gray-dark
+
+inputs:
+  repository:
+    description: The repo to fork (either 'owner/repo' or full GitHub URL)
+    required: true
+  maintainers:
+    description: Comma-separated list of GitHub usernames (without @) to add as maintainers
+    required: true
+  org:
+    description: Target GitHub organization (defaults to the owner of this workflow repository)
+    required: false
+  team-name:
+    description: Custom team slug (defaults to `<repo>-maintainers`)
+    required: false
+  permission:
+    description: 'Permission level for the team (pull, push, maintain). Default: maintain'
+    required: false
+    default: maintain
+  poll-interval:
+    description: Seconds between checks for fork readiness
+    required: false
+    default: 3
+  poll-retries:
+    description: Number of times to poll before timing out
+    required: false
+    default: 10
+  token:
+    description: GitHub token with `repo` + `admin:org` scopes
+    required: true
+
+outputs:
+  fork-repo:
+    description: Full name of the new fork (e.g. Org/bar)
+  fork-url:
+    description: HTTPS URL of the new fork
+  team-slug:
+    description: Slug of the created or retrieved team
+
+runs:
+  using: node20
+  main: dist/index.js

@@ -1,0 +1,29 @@
+version = 1
+SPDX-PackageName = "auto-fork-action"
+SPDX-PackageSupplier = "2025 INDUSTRIA DE DISEÑO TEXTIL S.A. (INDITEX S.A.)"
+SPDX-PackageDownloadLocation = "https://github.com/InditexTech/auto-fork-action"
+
+[[annotations]]
+path = [
+    "repolinter.json",
+    "NOTICE",
+    ".gitignore",
+    ".github/CODEOWNERS",
+    ".node-version",
+    ".gitattributes",
+    ".prettierignore",
+    "package.json",
+    "package-lock.json",
+    "dist/**",
+]
+SPDX-FileCopyrightText = "2025 INDUSTRIA DE DISEÑO TEXTIL S.A. (INDITEX S.A.)"
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = [
+    "tsconfig.base.json",
+    "tsconfig.eslint.json",
+    "tsconfig.json",
+]
+SPDX-FileCopyrightText = "2023 GitHub"
+SPDX-License-Identifier = "MIT"
