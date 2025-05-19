@@ -6,10 +6,25 @@ SPDX-License-Identifier: Apache-2.0
 
 <!-- Add relevant badges here -->
 
-![GitHub License](https://img.shields.io/github/license/InditexTech/auto-fork-action)
-[![GitHub Super-Linter](https://github.com/InditexTech/auto-fork-action/actions/workflows/linter.yml/badge.svg)](https://github.com/super-linter/super-linter)
-[![Check dist/](https://github.com/InditexTech/auto-fork-action/actions/workflows/check-dist.yml/badge.svg)](https://github.com/InditexTech/auto-fork-action/actions/workflows/check-dist.yml)
-[![CodeQL](https://github.com/InditexTech/auto-fork-action/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/InditexTech/auto-fork-action/actions/workflows/codeql-analysis.yml)
+<h1 align="center">
+  <img height="250" src="logo.png">
+</h1>
+
+<p align="center">
+  <a href="https://github.com/InditexTech/auto-fork-action/blob/main/LICENSE">
+    <img alt="GitHub License" src="https://img.shields.io/github/license/InditexTech/auto-fork-action">
+  </a>
+  <a href="https://github.com/InditexTech/auto-fork-action/actions?query=workflow%3Alinter">
+    <img alt="GitHub Super-Linter" src="https://github.com/InditexTech/auto-fork-action/actions/workflows/linter.yml/badge.svg">
+  </a>
+  <a href="https://github.com/InditexTech/auto-fork-action/actions?query=workflow%3Acheck-dist">
+    <img alt="Check dist/" src="https://github.com/InditexTech/auto-fork-action/actions/workflows/check-dist.yml/badge.svg">
+  </a>
+  <a href="https://scorecard.dev/viewer/?uri=github.com/InditexTech/auto-fork-action">
+    <img alt="OpenSSF Scorecard" src="https://api.scorecard.dev/projects/github.com/InditexTech/auto-fork-action/badge">
+  </a>
+</p>
+
 
 # auto-fork-action
 
