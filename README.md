@@ -7,7 +7,7 @@ SPDX-License-Identifier: Apache-2.0
 <!-- Add relevant badges here -->
 
 <h1 align="center">
-  <img height="250" src="logo.png">
+  <img height="250" alt="Action Logo" src="logo.png">
 </h1>
 
 <p align="center">
