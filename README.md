@@ -14,7 +14,7 @@ SPDX-License-Identifier: Apache-2.0
   <a href="https://github.com/InditexTech/auto-fork-action/blob/main/LICENSE">
     <img alt="GitHub License" src="https://img.shields.io/github/license/InditexTech/auto-fork-action">
   </a>
-  <a href="https://github.com/InditexTech/auto-fork-action/actions?query=workflow%3Alinter">
+  <a href="https://github.com/InditexTech/auto-fork-action/actions/workflows/linter.yml">
     <img alt="GitHub Super-Linter" src="https://github.com/InditexTech/auto-fork-action/actions/workflows/linter.yml/badge.svg">
   </a>
   <a href="https://github.com/InditexTech/auto-fork-action/actions?query=workflow%3Acheck-dist">
