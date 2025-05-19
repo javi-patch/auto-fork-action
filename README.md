@@ -25,7 +25,6 @@ SPDX-License-Identifier: Apache-2.0
   </a>
 </p>
 
-
 # auto-fork-action
 
 Short description of what this project does and why it exists.

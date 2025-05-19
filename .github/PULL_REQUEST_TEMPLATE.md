@@ -4,7 +4,8 @@ SPDX-FileCopyrightText: 2025 INDUSTRIA DE DISEÑO TEXTIL S.A. (INDITEX S.A.)
 SPDX-License-Identifier: Apache-2.0
 -->
 
-<!-- markdownlint-disable-next-line first-line-heading -->
+<!-- markdownlint-disable first-line-heading -->
+
 ## Summary
 
 Briefly describe the purpose of this PR and what changes it introduces.
