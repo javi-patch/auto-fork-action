@@ -31325,6 +31325,12 @@ async function run() {
             repo: srcRepo,
             permission
         });
+        // Set outputs
+        const forkRepo = `${org}/${srcRepo}`;
+        const forkUrl = `https://github.com/${forkRepo}`;
+        coreExports.setOutput('fork-repo', forkRepo);
+        coreExports.setOutput('fork-url', forkUrl);
+        coreExports.setOutput('team-slug', teamSlug);
         coreExports.info(`🔨 Auto Fork & Team completed successfully!`);
     }
     catch (error) {
