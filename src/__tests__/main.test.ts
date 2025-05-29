@@ -29,6 +29,6 @@ describe('main.ts', () => {
   it('Mock test', async () => {
     await run()
 
-    expect(core.info).toHaveBeenCalledWith(`🔨 Repository: ${process.env.INPUT_REPOSITORY}`)
+    expect(core.info).toHaveBeenCalledWith(`🔨 Auto Fork & Team completed successfully!`)
   })
 })
