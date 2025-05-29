@@ -27,8 +27,8 @@ SPDX-License-Identifier: Apache-2.0
 
 # auto-fork-action
 
-A GitHub Action that automatically forks a repository into your organization, creates a `<repo>-maintainers` team,
-assigns specified users as maintainers and grants permissions.
+A GitHub Action that automatically forks a repository into your organization, creates a maintainers team, assigns
+specified users and grants permissions.
 
 > Simplify onboarding of forked repos and team setup for your organization.
 
@@ -72,7 +72,7 @@ Please read our [CONTRIBUTING.md](./CONTRIBUTING.md) and follow the [Code of Con
 
 ## Roadmap
 
-See [ROADMAP.md](./ROADMAP.md) for planned features and development goals.
+> TODO
 
 ## Acknowledgments
 

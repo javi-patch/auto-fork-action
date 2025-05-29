@@ -3,13 +3,16 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import * as core from '@actions/core'
+// import { getOctokit, context } from '@actions/github'
 
-/**
- * Main entrypoint for the Auto Fork & Team action.
- */
 export async function run(): Promise<void> {
   try {
-    core.info('Starting Auto Fork & Team action')
+    core.info('🔨 Starting Auto Fork & Team')
+
+    // 1. inputs
+    const repoInput = core.getInput('repository', { required: true }).trim()
+
+    core.info(`🔨 Repository: ${repoInput}`)
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
   }

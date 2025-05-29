@@ -27249,12 +27249,13 @@ var coreExports = requireCore();
 // SPDX-FileCopyrightText: 2025 INDUSTRIA DE DISEÑO TEXTIL S.A. (INDITEX S.A.)
 //
 // SPDX-License-Identifier: Apache-2.0
-/**
- * Main entrypoint for the Auto Fork & Team action.
- */
+// import { getOctokit, context } from '@actions/github'
 async function run() {
     try {
-        coreExports.info('Starting Auto Fork & Team action');
+        coreExports.info('🔨 Starting Auto Fork & Team');
+        // 1. inputs
+        const repoInput = coreExports.getInput('repository', { required: true }).trim();
+        coreExports.info(`🔨 Repository: ${repoInput}`);
     }
     catch (error) {
         if (error instanceof Error)
