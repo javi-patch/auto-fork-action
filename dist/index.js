@@ -28466,7 +28466,7 @@ const createTokenAuth = function createTokenAuth2(token) {
 // pkg/dist-src/index.js
 
 // pkg/dist-src/version.js
-var VERSION$2 = "5.2.0";
+var VERSION$2 = "5.2.1";
 
 // pkg/dist-src/index.js
 var noop = () => {
