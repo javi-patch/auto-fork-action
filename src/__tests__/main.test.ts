@@ -12,6 +12,8 @@
 import { jest } from '@jest/globals'
 import * as core from './core.fixture.js'
 
+import 'dotenv/config'
+
 // Mocks should be declared before the module being tested is imported.
 jest.unstable_mockModule('@actions/core', () => core)
 
@@ -20,11 +22,6 @@ jest.unstable_mockModule('@actions/core', () => core)
 const { run } = await import('../main.js')
 
 describe('main.ts', () => {
-  beforeEach(() => {
-    // Set the action's inputs as return values from core.getInput().
-    core.getInput.mockImplementation(() => 'kubernetes/kubernetes')
-  })
-
   afterEach(() => {
     jest.resetAllMocks()
   })
@@ -32,6 +29,6 @@ describe('main.ts', () => {
   it('Mock test', async () => {
     await run()
 
-    expect(core.info).toHaveBeenCalledWith('🔨 Repository: kubernetes/kubernetes')
+    expect(core.info).toHaveBeenCalledWith(`🔨 Repository: ${process.env.INPUT_REPOSITORY}`)
   })
 })
