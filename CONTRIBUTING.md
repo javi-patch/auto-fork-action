@@ -65,7 +65,7 @@ To proceed with local development, follow these steps:
 5. Test your changes locally with:
 
    ```sh
-   npm run test
+   npm run local-action
    ```
 
    Note: This is not a unit or integration test suite, but a single test that allows you to execute the action locally
