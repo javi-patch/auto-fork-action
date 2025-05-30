@@ -50,3 +50,25 @@ project.
   [REUSE Specification](https://reuse.software/spec/#copyright-and-licensing-information).
 
 ## Development
+
+To proceed with local development, follow these steps:
+
+1. Make sure you have Node.js installed on your system.
+2. Install dependencies by running:
+
+   ```sh
+   npm i
+   ```
+
+3. Make your changes to the codebase.
+4. Fill the `.env` file following the example.
+5. Test your changes locally with:
+
+   ```sh
+   npm run test
+   ```
+
+   Note: This is not a unit or integration test suite, but a single test that allows you to execute the action locally
+   to verify functionality.
+6. Once you've verified that your changes work correctly and the tests pass, you can proceed to open a pull request on
+   GitHub following the steps mentioned in the "How to Contribute" section above.
