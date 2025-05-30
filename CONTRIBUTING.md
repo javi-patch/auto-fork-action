@@ -70,5 +70,6 @@ To proceed with local development, follow these steps:
 
    Note: This is not a unit or integration test suite, but a single test that allows you to execute the action locally
    to verify functionality.
+
 6. Once you've verified that your changes work correctly and the tests pass, you can proceed to open a pull request on
    GitHub following the steps mentioned in the "How to Contribute" section above.
