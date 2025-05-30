@@ -1,7 +1,7 @@
 {
   "name": "auto-fork-action",
-  "description": "GitHub Actions TypeScript template",
-  "version": "0.0.0",
+  "description": "GitHub Action that forks a repository into your organization, creates a team, assigns specified users, and grants permissions.",
+  "version": "1.0.0",
   "author": "Jorge Teixeira Crespo <jorgetcr@ext.inditex.com>",
   "type": "module",
   "private": true,

@@ -3,9 +3,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 name: Auto Fork & Team
-description:
-  Forks a repository into your organization, creates a `<repo>-maintainers` team, assigns specified users, and grants
-  permissions.
+description: Forks a repository into your org, creates a team, assigns specified users, and grants permissions.
 author: InditexTech
 
 branding:
