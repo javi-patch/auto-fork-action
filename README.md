@@ -61,7 +61,70 @@ with:
 ### Example workflow
 
 ```yml
+name: auto-fork action
 
+on:
+  workflow_dispatch:
+  issues:
+    types: [opened]
+
+jobs:
+  fork-and-team:
+    if: ${{ contains(github.event.issue.labels.*.name, 'auto-fork') }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            .github/ISSUE_TEMPLATE/fork-request.yml
+          sparse-checkout-cone-mode: false
+
+      - uses: stefanbuck/github-issue-parser@v3
+        id: issue-parser
+        with:
+          template-path: .github/ISSUE_TEMPLATE/fork-request.yml
+
+      - uses: InditexTech/auto-fork-action@v1
+        id: auto-fork
+        with:
+          repository: ${{ steps.issue-parser.outputs.issueparser_repo_url }}
+          maintainers: ${{ steps.issue-parser.outputs.issueparser_maintainers }}
+          token: ${{ secrets.YOUR_TOKEN }}
+
+      - run: gh issue close --comment "$BODY" "$NUMBER"
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.issue.number }}
+          BODY: >
+            Repository has been forked: [${{ steps.auto-fork.outputs.fork-repo }}](${{ steps.auto-fork.outputs.fork-url
+            }}).
+```
+
+This example workflow assumes you have a issue template similar to the following:
+
+```yml
+name: Fork + team request
+description: fork a repo, create team and assign maintainers
+title: Fork repository request
+labels: [auto-fork]
+body:
+  - type: input
+    id: repo_url
+    attributes:
+      label: GitHub repo to fork
+      description: full URL, e.g. https://github.com/foo/bar
+    validations:
+      required: true
+
+  - type: textarea
+    id: maintainers
+    attributes:
+      label: Maintainer usernames
+      description: comma-separated, e.g. alice, bob, charlie
+    validations:
+      required: true
 ```
 
 ## Contributing
@@ -72,7 +135,13 @@ Please read our [CONTRIBUTING.md](./CONTRIBUTING.md) and follow the [Code of Con
 
 ## Roadmap
 
-> TODO
+While this first release provides the core functionality, future iterations may include:
+
+- 🐛 Bugfixes and reliability improvements
+- 🧪 Enhanced error handling and logging
+- 🔄 Support for updating existing teams and repos
+
+Have an idea or use case? [Open an issue](https://github.com/InditexTech/auto-fork-action/issues)!
 
 ## Acknowledgments
 
