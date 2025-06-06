@@ -31277,16 +31277,11 @@ async function run() {
         const forkParams = {
             owner: srcOwner,
             repo: srcRepo,
-            organization: org
+            organization: org,
+            ...(customName && { name: customName })
         };
-        // Add custom name if provided
-        if (customName) {
-            forkParams.name = customName;
-            coreExports.info(`🔨 Creating fork of ${srcOwner}/${srcRepo} to ${org} with custom name ${customName}`);
-        }
-        else {
-            coreExports.info(`🔨 Creating fork of ${srcOwner}/${srcRepo} to ${org}`);
-        }
+        // Log the fork creation with simple message
+        coreExports.info(`🔨 Creating fork of ${srcOwner}/${srcRepo} to ${org}${customName ? ` as ${customName}` : ''}`);
         await github.rest.repos.createFork(forkParams);
         // Wait until fork exists (simple poll)
         coreExports.info(`🔨 Waiting for fork to be available...`);
