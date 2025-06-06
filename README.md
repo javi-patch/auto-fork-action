@@ -35,6 +35,7 @@ specified users and grants permissions.
 ## Features
 
 - 🔧 Automatically fork any public repository into your org
+- 🏷️ Optionally specify a custom name for the forked repository
 - 👥 Bootstrap a maintainers team and assign roles
 - 🔒 Grant fine-grained permissions (`pull`│`push`│`maintain`)
 - 📦 Reusable action with configurable inputs
@@ -52,6 +53,7 @@ with:
   maintainers: alice,bob,charlie     # comma-separated list
   token: ${{ secrets.ORG_PAT }}      # PAT with repo + admin:org
   org: InditexTech                   # optional, defaults to the workflow repo owner
+  custom-name: custom-repo-name      # optional, custom name for the forked repository
   team-name: custom-maintainers      # optional, defaults to <repo>-maintainers
   permission: maintain               # optional: pull | triage | push | maintain | admin (default: maintain)
   poll-interval: '5'                 # optional, seconds between fork-ready checks (default: 3)
