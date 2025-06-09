@@ -20,6 +20,9 @@ inputs:
   org:
     description: Target GitHub organization (defaults to the owner of this workflow repository)
     required: false
+  custom-name:
+    description: Custom name for the forked repository (defaults to the original repository name)
+    required: false
   team-name:
     description: Custom team slug (defaults to `<repo>-maintainers`)
     required: false

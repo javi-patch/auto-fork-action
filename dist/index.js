@@ -31241,6 +31241,7 @@ async function run() {
         const token = coreExports.getInput('token', { required: true });
         const org = coreExports.getInput('org', { required: false }) || githubExports.context.repo.owner;
         const maintainers = coreExports.getInput('maintainers', { required: true });
+        const customName = coreExports.getInput('custom-name', { required: false });
         const customTeamName = coreExports.getInput('team-name', { required: false });
         const permission = coreExports.getInput('permission', { required: false }) || 'maintain';
         const pollInterval = parseInt(coreExports.getInput('poll-interval', { required: false }) || '3', 10);
@@ -31270,19 +31271,24 @@ async function run() {
         if (!srcOwner || !srcRepo) {
             throw new Error('Invalid repository format. Expected: owner/repo or GitHub URL format');
         }
+        // Define the fork repository name (either custom or the original repo name)
+        const forkRepoName = customName || srcRepo;
         // Create fork
-        coreExports.info(`🔨 Creating fork of ${srcOwner}/${srcRepo} to ${org}`);
-        await github.rest.repos.createFork({
+        const forkParams = {
             owner: srcOwner,
             repo: srcRepo,
-            organization: org
-        });
+            organization: org,
+            ...(customName && { name: customName })
+        };
+        // Log the fork creation with simple message
+        coreExports.info(`🔨 Creating fork of ${srcOwner}/${srcRepo} to ${org}${customName ? ` as ${customName}` : ''}`);
+        await github.rest.repos.createFork(forkParams);
         // Wait until fork exists (simple poll)
         coreExports.info(`🔨 Waiting for fork to be available...`);
         let ready = false;
         for (let i = 0; i < pollRetries && !ready; i++) {
             try {
-                await github.rest.repos.get({ owner: org, repo: srcRepo });
+                await github.rest.repos.get({ owner: org, repo: forkRepoName });
                 ready = true;
                 coreExports.info(`🔨 Fork is ready!`);
             }
@@ -31322,11 +31328,11 @@ async function run() {
             org,
             team_slug: teamSlug,
             owner: org,
-            repo: srcRepo,
+            repo: forkRepoName,
             permission
         });
         // Set outputs
-        const forkRepo = `${org}/${srcRepo}`;
+        const forkRepo = `${org}/${forkRepoName}`;
         const forkUrl = `https://github.com/${forkRepo}`;
         coreExports.setOutput('fork-repo', forkRepo);
         coreExports.setOutput('fork-url', forkUrl);

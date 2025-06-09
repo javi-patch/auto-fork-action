@@ -14,6 +14,7 @@ export async function run(): Promise<void> {
     const token = core.getInput('token', { required: true })
     const org = core.getInput('org', { required: false }) || context.repo.owner
     const maintainers = core.getInput('maintainers', { required: true })
+    const customName = core.getInput('custom-name', { required: false })
     const customTeamName = core.getInput('team-name', { required: false })
     const permission = core.getInput('permission', { required: false }) || 'maintain'
     const pollInterval = parseInt(core.getInput('poll-interval', { required: false }) || '3', 10)
@@ -49,20 +50,28 @@ export async function run(): Promise<void> {
       throw new Error('Invalid repository format. Expected: owner/repo or GitHub URL format')
     }
 
+    // Define the fork repository name (either custom or the original repo name)
+    const forkRepoName = customName || srcRepo
+
     // Create fork
-    core.info(`🔨 Creating fork of ${srcOwner}/${srcRepo} to ${org}`)
-    await github.rest.repos.createFork({
+    const forkParams: { owner: string; repo: string; organization: string; name?: string } = {
       owner: srcOwner,
       repo: srcRepo,
-      organization: org
-    })
+      organization: org,
+      ...(customName && { name: customName })
+    }
+
+    // Log the fork creation with simple message
+    core.info(`🔨 Creating fork of ${srcOwner}/${srcRepo} to ${org}${customName ? ` as ${customName}` : ''}`)
+
+    await github.rest.repos.createFork(forkParams)
 
     // Wait until fork exists (simple poll)
     core.info(`🔨 Waiting for fork to be available...`)
     let ready = false
     for (let i = 0; i < pollRetries && !ready; i++) {
       try {
-        await github.rest.repos.get({ owner: org, repo: srcRepo })
+        await github.rest.repos.get({ owner: org, repo: forkRepoName })
         ready = true
         core.info(`🔨 Fork is ready!`)
       } catch {
@@ -102,12 +111,12 @@ export async function run(): Promise<void> {
       org,
       team_slug: teamSlug,
       owner: org,
-      repo: srcRepo,
+      repo: forkRepoName,
       permission
     })
 
     // Set outputs
-    const forkRepo = `${org}/${srcRepo}`
+    const forkRepo = `${org}/${forkRepoName}`
     const forkUrl = `https://github.com/${forkRepo}`
 
     core.setOutput('fork-repo', forkRepo)
