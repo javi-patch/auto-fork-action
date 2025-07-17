@@ -31253,7 +31253,10 @@ async function run() {
         coreExports.info(`🔨 Repository: ${repoInput}`);
         coreExports.info(`🔨 Organization: ${org}`);
         const github = githubExports.getOctokit(token);
-        const users = maintainers.split(/[, ]+/).map((u) => u.replace(/^@/, ''));
+        const users = maintainers
+            .split(/[,\s]+/)
+            .map((u) => u.replace(/^@/, ''))
+            .filter((u) => u.length > 0);
         // Parse owner/repo
         let srcOwner, srcRepo;
         // Case 1: owner/repo format (e.g., kubernetes/kubernetes)
