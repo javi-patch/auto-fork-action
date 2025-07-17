@@ -24,7 +24,10 @@ export async function run(): Promise<void> {
     core.info(`🔨 Organization: ${org}`)
 
     const github = getOctokit(token)
-    const users = maintainers.split(/[, ]+/).map((u) => u.replace(/^@/, ''))
+    const users = maintainers
+      .split(/[,\s]+/)
+      .map((u) => u.replace(/^@/, ''))
+      .filter((u) => u.length > 0)
 
     // Parse owner/repo
     let srcOwner, srcRepo
