@@ -31304,7 +31304,7 @@ async function run() {
         if (!ready)
             throw new Error(`Fork not available after ${pollRetries * pollInterval}s`);
         // Create/get team
-        const teamSlug = customTeamName || srcRepo.toLowerCase() + '-maintainers';
+        const teamSlug = customTeamName || srcRepo.toLowerCase().replaceAll('.', '-') + '-maintainers';
         coreExports.info(`🔨 Creating team: ${teamSlug}`);
         try {
             await github.rest.teams.create({

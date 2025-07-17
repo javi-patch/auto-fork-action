@@ -1,7 +1,7 @@
 {
   "name": "auto-fork-action",
   "description": "GitHub Action that forks a repository into your organization, creates a team, assigns specified users, and grants permissions.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": "Jorge Teixeira Crespo <jorgetcr@ext.inditex.com>",
   "type": "module",
   "private": true,
